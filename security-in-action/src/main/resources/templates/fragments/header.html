@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-th-fragment="header" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bootstrap in action</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="../../css/blog.css" rel="stylesheet">
+</head>
+<body>
+<div class="blog-masthead">
+    <div class="container">
+        <div class="row">
+            <h1>Bootstrap in action</h1>
+
+            <nav class="nav blog-nav">
+                <a class="nav-link active" href="/users">首页</a>
+                <a class="nav-link" href="/users">其他</a>
+            </nav>
+        </div>
+        <div sec:authorize="isAuthenticated()" class="row">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <span class="nav-link" sec:authentication="name"></span>
+                </li>
+            </ul>
+            <form action="/logout" data-th-action="@{/logout}" method="post">
+                <input type="submit"  class="btn btn-outline-success" value="退出">
+            </form>
+            <div sec:authorize="isAnonymous()">
+                <a href="/login" data-th-href="@{~login}" class="btn btn-outline-success" type="submit">登陆</a>
+            </div>
+
+        </div>
+    </div><!-- /.container -->
+</div>
+</body>
+</html>
